@@ -1,4 +1,4 @@
-import React, { StrictMode } from "react";
+import React, { StrictMode, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { Header } from "./components/header/header";
 import { FormTask } from "./components/formTask/formtask";
@@ -6,7 +6,7 @@ import { TaskList } from "./components/taskList/tasklist";
 import "./index.css";
 
 const tasks = [];
-
+//comnetario ultima modificacion
 class App extends React.Component{
     constructor(props){
         super(props);
