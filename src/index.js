@@ -7,6 +7,7 @@ import "./index.css";
 
 const tasks = [];
 //comnetario ultima modificacion
+// nuevo comnetario rama hooks
 class App extends React.Component{
     constructor(props){
         super(props);
