@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TasksDispatchContext } from "../../../context/contexts";
 
-export function Task({task, editarTarea, eliminarTarea}){
+export function Task({ task }){
     const [editable, setEditable] = useState(false);
+    const dispatch = useContext(TasksDispatchContext);
 
     let editaroMostrar = editable? <input type="text" value = {task.titulo} onChange={(e) => {
-        editarTarea({
-            ...task,
-            titulo: e.target.value
+        dispatch({
+            type: "changed",
+            task: {
+                ...task,
+                titulo: e.target.value
+            }
         });
     }}/>
     :<p>{task.id} {task.titulo}</p>;
@@ -23,7 +28,12 @@ export function Task({task, editarTarea, eliminarTarea}){
                 </div>
                 <div className="btn-group w-20">
                     {botonGuardaroEditar}
-                    <button className="btn btn-sm btn-peligro" onClick={() => eliminarTarea(task.id)}><i className="bi bi-trash3-fill"></i></button>
+                    <button className="btn btn-sm btn-peligro" onClick={() => 
+                    dispatch({
+                        type: "deleted",
+                        id: task.id
+                    })}
+        ><i className="bi bi-trash3-fill"></i></button>
                 </div>
         </div>
     );
